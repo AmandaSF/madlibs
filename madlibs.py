@@ -29,8 +29,39 @@ def greet_person():
 
     return render_template("compliment.html", person=player, compliment=compliment)
 
+colors = ['red', 'green', 'blue', 'pink', 'yellow', 'purple', 'brown', 'magenta', 'chartreuse', 'lime']
+
+
+
+@app.route('/game')
+def show_game_form():
+    wanna_play = request.args.get("wannaPlay")
+    if wanna_play == "yes":
+        return render_template("game.html", colors=colors)
+    elif wanna_play == "no":
+        return render_template("goodbye.html", wannaPlay=wanna_play)
+    else:
+        return render_template("cat.html")
+
+@app.route('/madlib')
+def show_madlib():
+    madlib_args = request.args.items()
+    madlib_args = dict(madlib_args)
+    return render_template("madlib.html", color=madlib_args["color"], name=madlib_args["name"], adjective=madlib_args["adjective"], noun=madlib_args["noun"])
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads" our web app
     # if we change the code.
     app.run(debug=True)
+
+
