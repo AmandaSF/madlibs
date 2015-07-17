@@ -9,8 +9,9 @@
     <br>
     <form action="/madlib">
         <label><h2>PICK A COLOR YOU FOOL!!!!!!!!!!!!!</h2>
-                {% for color in colors %}
-                    <input type="radio" name="color" value="{{ color }}">{{color}}
+                {% for aColor in colors %}
+                    <input type="radio" name="color" value="{{ aColor }}">{{aColor}}
+                    <br>
                 {% endfor %}
         </label>
         <br>

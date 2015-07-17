@@ -1,4 +1,6 @@
 from random import choice
+import re
+import sys
 
 from flask import Flask, render_template, request
 
@@ -17,6 +19,7 @@ def start_here():
 def say_hello():
     return render_template("hello.html")
 
+
 @app.route('/greet')
 def greet_person():
     player = request.args.get("person")
@@ -29,12 +32,23 @@ def greet_person():
 
     return render_template("compliment.html", person=player, compliment=compliment)
 
-colors = ['red', 'green', 'blue', 'pink', 'yellow', 'purple', 'brown', 'magenta', 'chartreuse', 'lime']
+# def colorlist(filename):
+#     text_file = open(filename)
+#     text_file = text_file.read().split("\n")
+#     return text_file
+
+# colors = colorlist('colorlist.txt')
 
 
 
 @app.route('/game')
 def show_game_form():
+    text_file = open('colorlist.txt')
+    colors = text_file.read().split("\n")
+    
+
+
+
     wanna_play = request.args.get("wannaPlay")
     if wanna_play == "yes":
         return render_template("game.html", colors=colors)
